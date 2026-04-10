@@ -70,7 +70,7 @@ type encoderToFlat struct {
 func (e encoderToFlat) createFlat(field reflect.Value, name string, node *Node) []Flat {
 	var entries []Flat
 	if node.Kind != reflect.Map && node.Description != "-" {
-		if !(node.Kind == reflect.Pointer && len(node.Children) > 0) ||
+		if (node.Kind != reflect.Pointer || len(node.Children) == 0) ||
 			(node.Kind == reflect.Pointer && node.Tag.Get(e.TagName) == TagLabelAllowEmpty) {
 			if node.Name[0] != '[' {
 				entries = append(entries, Flat{

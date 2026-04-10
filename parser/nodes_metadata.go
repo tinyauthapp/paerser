@@ -82,7 +82,7 @@ func (m metadata) add(rootType reflect.Type, node *Node) error {
 
 	if node.Kind == reflect.Struct || node.Kind == reflect.Pointer && fType.Elem().Kind() == reflect.Struct ||
 		node.Kind == reflect.Map {
-		if len(node.Children) == 0 && !(field.Tag.Get(m.TagName) == TagLabelAllowEmpty || field.Tag.Get(m.TagName) == "-") {
+		if len(node.Children) == 0 && field.Tag.Get(m.TagName) != TagLabelAllowEmpty && field.Tag.Get(m.TagName) != "-" {
 			return fmt.Errorf("%s cannot be a standalone element (type %s)", node.Name, fType)
 		}
 
