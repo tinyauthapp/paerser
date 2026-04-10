@@ -104,6 +104,8 @@ func (f filler) fill(field reflect.Value, node *Node) error {
 		return f.setMap(field, node)
 	case reflect.Slice:
 		return f.setSlice(field, node)
+	case reflect.Interface:
+		return f.setInterface(field, node)
 	default:
 		return nil
 	}
@@ -605,4 +607,14 @@ func (f filler) cleanRawValue(value reflect.Value) (reflect.Value, error) {
 	}
 
 	return value, nil
+}
+
+func (f filler) setInterface(field reflect.Value, node *Node) error {
+	if node.RawValue != nil {
+		field.Set(reflect.ValueOf(node.RawValue))
+		return nil
+	}
+
+	field.Set(reflect.ValueOf(node.Value))
+	return nil
 }

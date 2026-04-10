@@ -134,7 +134,12 @@ func (m metadata) add(rootType reflect.Type, node *Node) error {
 		return nil
 	}
 
-	return fmt.Errorf("invalid node %s: %v", node.Name, node.Kind)
+	if fType.Kind() == reflect.Interface {
+		addRawValue(node)
+		return nil
+	}
+
+	return fmt.Errorf("invalid node %s: %v", node.Name, fType.Kind())
 }
 
 func (m metadata) findTypedField(rType reflect.Type, node *Node) (reflect.StructField, error) {
