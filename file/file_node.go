@@ -8,7 +8,7 @@ import (
 	"strings"
 
 	"github.com/BurntSushi/toml"
-	"github.com/traefik/paerser/parser"
+	"github.com/tinyauthapp/paerser/parser"
 	"gopkg.in/yaml.v3"
 )
 

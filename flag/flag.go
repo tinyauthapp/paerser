@@ -2,7 +2,7 @@
 package flag
 
 import (
-	"github.com/traefik/paerser/parser"
+	"github.com/tinyauthapp/paerser/parser"
 )
 
 // Decode decodes the given flag arguments into the given element.

@@ -6,9 +6,9 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"github.com/traefik/paerser/generator"
-	"github.com/traefik/paerser/parser"
-	"github.com/traefik/paerser/types"
+	"github.com/tinyauthapp/paerser/generator"
+	"github.com/tinyauthapp/paerser/parser"
+	"github.com/tinyauthapp/paerser/types"
 )
 
 func TestDecode(t *testing.T) {

@@ -7,9 +7,9 @@ import (
 	"text/template"
 
 	"github.com/Masterminds/sprig/v3"
-	"github.com/traefik/paerser/flag"
-	"github.com/traefik/paerser/generator"
-	"github.com/traefik/paerser/parser"
+	"github.com/tinyauthapp/paerser/flag"
+	"github.com/tinyauthapp/paerser/generator"
+	"github.com/tinyauthapp/paerser/parser"
 )
 
 const tmplHelp = `{{ .Cmd.Name }}	{{ .Cmd.Description }}

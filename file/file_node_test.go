@@ -5,7 +5,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"github.com/traefik/paerser/parser"
+	"github.com/tinyauthapp/paerser/parser"
 )
 
 func Test_getRootFieldNames(t *testing.T) {

@@ -6,7 +6,7 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/traefik/paerser/parser"
+	"github.com/tinyauthapp/paerser/parser"
 )
 
 // Parse parses the command-line flag arguments into a map,

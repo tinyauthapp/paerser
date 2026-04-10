@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/traefik/paerser/env"
+	"github.com/tinyauthapp/paerser/env"
 )
 
 // EnvLoader loads a configuration from all the environment variables prefixed with Prefix (default: "TRAEFIK_").

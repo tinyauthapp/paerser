@@ -9,7 +9,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/traefik/paerser/types"
+	"github.com/tinyauthapp/paerser/types"
 )
 
 const defaultRawSliceSeparator = ","

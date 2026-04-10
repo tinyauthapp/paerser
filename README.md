@@ -26,7 +26,7 @@ import (
 	"log"
 
 	"github.com/davecgh/go-spew/spew"
-	"github.com/traefik/paerser/flag"
+	"github.com/tinyauthapp/paerser/flag"
 )
 
 type ConfigExample struct {
@@ -96,7 +96,7 @@ import (
 	"os"
 
 	"github.com/davecgh/go-spew/spew"
-	"github.com/traefik/paerser/file"
+	"github.com/tinyauthapp/paerser/file"
 )
 
 type ConfigExample struct {
@@ -186,7 +186,7 @@ import (
 	"os"
 
 	"github.com/davecgh/go-spew/spew"
-	"github.com/traefik/paerser/env"
+	"github.com/tinyauthapp/paerser/env"
 )
 
 type ConfigExample struct {

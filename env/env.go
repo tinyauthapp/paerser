@@ -6,7 +6,7 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/traefik/paerser/parser"
+	"github.com/tinyauthapp/paerser/parser"
 )
 
 // DefaultNamePrefix is the default prefix for environment variable names.

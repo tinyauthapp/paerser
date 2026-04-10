@@ -5,9 +5,9 @@ import (
 	"os"
 	"strings"
 
-	"github.com/traefik/paerser/file"
-	"github.com/traefik/paerser/flag"
-	"github.com/traefik/paerser/parser"
+	"github.com/tinyauthapp/paerser/file"
+	"github.com/tinyauthapp/paerser/flag"
+	"github.com/tinyauthapp/paerser/parser"
 )
 
 // FileLoader loads a configuration from a file.
