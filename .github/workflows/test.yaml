@@ -1,31 +1,45 @@
-name: go
-
+name: Paerser CI
 on:
+  push:
+    branches:
+      - main
   pull_request:
 
 jobs:
-
-  cross:
-    name: test
-    runs-on: ${{ matrix.os }}
-    env:
-      CGO_ENABLED: 0
-
-    strategy:
-      matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
-
+  test:
+    runs-on: ubuntu-latest
     steps:
-      # https://github.com/marketplace/actions/checkout
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # https://github.com/marketplace/actions/setup-go-environment
-      - name: Set up Go ${{ matrix.go-version }}
-        uses: actions/setup-go@v5
+      - name: Setup go
+        uses: actions/setup-go@v6
         with:
-          go-version-file: 'go.mod'
+          go-version: "^1.22"
+
+      - name: Download dependencies
+        run: go mod download
 
       - name: Test
-        run: go test -v -cover ./...
+        run: go test -v ./...
 
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup go
+        uses: actions/setup-go@v6
+        with:
+          go-version: "^1.22"
+
+      - name: Check and get dependencies
+        run: |
+          go mod tidy
+          git diff --exit-code go.mod
+          git diff --exit-code go.sum
+          go mod download
+
+      - name: Lint
+        uses: golangci/golangci-lint-action@v6
