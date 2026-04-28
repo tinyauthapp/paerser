@@ -8,7 +8,6 @@ import (
 	"github.com/stretchr/testify/require"
 	"github.com/tinyauthapp/paerser/generator"
 	"github.com/tinyauthapp/paerser/parser"
-	"github.com/tinyauthapp/paerser/types"
 )
 
 func TestDecode(t *testing.T) {
@@ -22,18 +21,6 @@ func TestDecode(t *testing.T) {
 			desc:     "no args",
 			args:     nil,
 			expected: nil,
-		},
-		{
-			desc: "types.Duration value",
-			args: []string{"--foo=1"},
-			element: &struct {
-				Foo types.Duration
-			}{},
-			expected: &struct {
-				Foo types.Duration
-			}{
-				Foo: types.Duration(1 * time.Second),
-			},
 		},
 		{
 			desc: "time.Duration value",
@@ -903,19 +890,6 @@ func TestEncode(t *testing.T) {
 				Name:        "foo.fii.field",
 				Description: "field description",
 				Default:     "1s",
-			}},
-		},
-		{
-			desc: "time duration field",
-			element: &struct {
-				Field types.Duration `description:"field description"`
-			}{
-				Field: types.Duration(180 * time.Second),
-			},
-			expected: []parser.Flat{{
-				Name:        "field",
-				Description: "field description",
-				Default:     "180",
 			}},
 		},
 		{

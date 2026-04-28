@@ -8,8 +8,6 @@ import (
 	"strconv"
 	"strings"
 	"time"
-
-	"github.com/tinyauthapp/paerser/types"
 )
 
 const defaultPtrValue = "false"
@@ -143,8 +141,6 @@ func (e encoderToFlat) getNodeValue(field reflect.Value, node *Node) string {
 		i, _ := strconv.ParseInt(node.Value, 10, 64)
 
 		switch field.Type() {
-		case reflect.TypeOf(types.Duration(time.Second)):
-			return strconv.Itoa(int(i) / int(time.Second))
 		case reflect.TypeOf(time.Second):
 			return time.Duration(i).String()
 		}
