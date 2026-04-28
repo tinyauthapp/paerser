@@ -5,9 +5,8 @@ import (
 	"os"
 	"path/filepath"
 	"reflect"
-	"strings"
+	"slices"
 
-	"github.com/BurntSushi/toml"
 	"github.com/tinyauthapp/paerser/parser"
 	"gopkg.in/yaml.v3"
 )
@@ -21,22 +20,16 @@ func decodeFileToNode(filePath string, filters ...string) (*parser.Node, error) 
 	}
 
 	data := make(map[string]interface{})
+	extension := filepath.Ext(filePath)
 
-	switch strings.ToLower(filepath.Ext(filePath)) {
-	case ".toml":
-		err = toml.Unmarshal(content, &data)
-		if err != nil {
-			return nil, err
-		}
+	if !slices.Contains(supportedExtensions, extension) {
 
-	case ".yml", ".yaml", ".json":
-		err = yaml.Unmarshal(content, data)
-		if err != nil {
-			return nil, err
-		}
-
-	default:
 		return nil, fmt.Errorf("unsupported file extension: %s", filePath)
+	}
+
+	err = yaml.Unmarshal(content, data)
+	if err != nil {
+		return nil, err
 	}
 
 	if len(data) == 0 {

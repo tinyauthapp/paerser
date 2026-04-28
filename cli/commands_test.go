@@ -769,11 +769,11 @@ func Test_execute_configuration_file(t *testing.T) {
 	}{
 		{
 			desc: "configFile arg in camel case",
-			args: []string{"", "sub1", "--configFile=./fixtures/config.toml"},
+			args: []string{"", "sub1", "--configFile=./fixtures/config.yml"},
 		},
 		{
 			desc: "configfile arg in lower case",
-			args: []string{"", "sub1", "--configfile=./fixtures/config.toml"},
+			args: []string{"", "sub1", "--configfile=./fixtures/config.yml"},
 		},
 	}
 
