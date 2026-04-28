@@ -3,13 +3,15 @@ package file
 
 import (
 	"fmt"
+	"slices"
 
-	"github.com/BurntSushi/toml"
 	"github.com/tinyauthapp/paerser/parser"
 	"gopkg.in/yaml.v3"
 )
 
 const defaultRawSliceSeparator = "║"
+
+var supportedExtensions = []string{".yml", ".yaml"}
 
 // Decode decodes the given configuration file into the given element.
 // The operation goes through three stages roughly summarized as:
@@ -45,22 +47,13 @@ func Decode(filePath string, element interface{}) error {
 func DecodeContent(content, extension string, element interface{}) error {
 	data := make(map[string]interface{})
 
-	switch extension {
-	case ".toml":
-		_, err := toml.Decode(content, &data)
-		if err != nil {
-			return err
-		}
-
-	case ".yml", ".yaml", ".json":
-		var err error
-		err = yaml.Unmarshal([]byte(content), &data)
-		if err != nil {
-			return err
-		}
-
-	default:
+	if !slices.Contains(supportedExtensions, extension) {
 		return fmt.Errorf("unsupported file extension: %s", extension)
+	}
+
+	err := yaml.Unmarshal([]byte(content), &data)
+	if err != nil {
+		return err
 	}
 
 	filters := getRootFieldNames(element)
