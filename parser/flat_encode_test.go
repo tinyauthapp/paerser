@@ -7,7 +7,6 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"github.com/tinyauthapp/paerser/types"
 )
 
 func TestEncodeToFlat(t *testing.T) {
@@ -1119,34 +1118,6 @@ func TestEncodeToFlat(t *testing.T) {
 				Name:        "foo.fii.field",
 				Description: "field description",
 				Default:     "1s",
-			}},
-		},
-		{
-			desc: "time duration field",
-			element: &struct {
-				Field types.Duration `description:"field description"`
-			}{
-				Field: types.Duration(180 * time.Second),
-			},
-			node: &Node{
-				Name:      "traefik",
-				FieldName: "",
-				Kind:      reflect.Struct,
-				Children: []*Node{
-					{
-						Name:        "Field",
-						Description: "field description",
-						FieldName:   "Field",
-						Value:       "180000000000",
-						Kind:        reflect.Int64,
-						Tag:         `description:"field description"`,
-					},
-				},
-			},
-			expected: []Flat{{
-				Name:        "field",
-				Description: "field description",
-				Default:     "180",
 			}},
 		},
 		{

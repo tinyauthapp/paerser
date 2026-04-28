@@ -7,7 +7,6 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"github.com/tinyauthapp/paerser/types"
 )
 
 func TestFill(t *testing.T) {
@@ -389,30 +388,6 @@ func TestFill(t *testing.T) {
 			},
 			element:  &struct{ Foo time.Duration }{},
 			expected: expected{element: &struct{ Foo time.Duration }{Foo: 4 * time.Nanosecond}},
-		},
-		{
-			desc: "types.Duration with unit",
-			node: &Node{
-				Name: "traefik",
-				Kind: reflect.Struct,
-				Children: []*Node{
-					{Name: "Foo", FieldName: "Foo", Value: "4s", Kind: reflect.Int64},
-				},
-			},
-			element:  &struct{ Foo types.Duration }{},
-			expected: expected{element: &struct{ Foo types.Duration }{Foo: types.Duration(4 * time.Second)}},
-		},
-		{
-			desc: "types.Duration without unit",
-			node: &Node{
-				Name: "traefik",
-				Kind: reflect.Struct,
-				Children: []*Node{
-					{Name: "Foo", FieldName: "Foo", Value: "4", Kind: reflect.Int64},
-				},
-			},
-			element:  &struct{ Foo types.Duration }{},
-			expected: expected{element: &struct{ Foo types.Duration }{Foo: types.Duration(4 * time.Second)}},
 		},
 		{
 			desc: "bool",

@@ -467,39 +467,6 @@ func main() {
 - Call `SetDefaults()` on any field whose pointer type implements it
 - Recurse into nested structs, maps, and slices
 
-### `types` - Custom Types
-
-#### `Duration`
-
-A duration type that works seamlessly with TOML, YAML, JSON, and plain integer values (interpreted as seconds).
-
-```go
-package main
-
-import (
-	"fmt"
-
-	"github.com/tinyauthapp/paerser/types"
-)
-
-func main() {
-	var d types.Duration
-
-	d.Set("30s")          // 30 seconds
-	d.Set("5m30s")        // 5 minutes and 30 seconds
-	d.Set("120")          // 120 seconds (suffix-less integers are treated as seconds)
-
-	fmt.Println(d.String()) // "2m0s"
-}
-```
-
-It implements `encoding.TextMarshaler`, `encoding.TextUnmarshaler`, `json.Marshaler`, and `json.Unmarshaler`, so it works out of the box in configuration files:
-
-```yaml
-timeout: 30s
-interval: 120
-```
-
 ### `parser` - Low-Level Parsing Engine
 
 The `parser` package is the foundation that all other packages build on. It provides a tree-based intermediate representation (`Node`) for configuration data, along with encoding/decoding utilities.
